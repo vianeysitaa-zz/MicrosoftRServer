@@ -71,14 +71,14 @@ system.time(weather_mrs <- rxImport(inData = inputFileWeather, outFile = outFile
 # Importar la información de vuelos.
 system.time(flight_r <- read.csv(file = inputFileFlight, na.strings = "NA",
                                  stringsAsFactors = TRUE)
-            )  # tiempo: 15.60 seconds
+            )  # tiempo: 15.60 segundos
 
 # Importar la información del clima y eliminar datos redundantes.
 system.time(weather_r <- subset(read.csv(file = inputFileWeather, na.strings = "NA",
                                          stringsAsFactors = TRUE),
                                 select = -c(Year, Timezone, DryBulbFarenheit, DewPointFarenheit)
                                 )
-            )  # tiempo: 1.79 seconds
+            )  # tiempo: 1.79 segundos
 ```
 
 
@@ -115,7 +115,7 @@ system.time(flight_mrs <- rxDataStep(inData = flight_mrs,
                                    transformVars = 'CRSDepTime',
                                    overwrite=TRUE
                                    )
-            )  # tiempo: 4.75 seconds
+            )  # tiempo: 4.75 segundos
 
 # Renombrar algunas columnas de los datos del tiempo para prepararlo para el cruce de información.
 xform2 <- function(dataList) {
@@ -134,7 +134,7 @@ system.time(weather_mrs <- rxDataStep(inData = weather_mrs,
                                       transformVars = c('AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'),
                                       overwrite=TRUE
                                       )
-            )  # tiempo: 0.34 seconds
+            )  # tiempo: 0.34 segundos
 
 # Concatenar los registros de vuelos y el clima.
 # 1). Unir los registros de vuelos y clima utilizando el origen del vuelo (OriginAirportID).
@@ -144,7 +144,7 @@ system.time(originData_mrs <- rxMerge(inData1 = flight_mrs, inData2 = weather_mr
                                       varsToDrop2 = 'DestAirportID',
                                       overwrite=TRUE
                                       )
-            )  # tiempo: 28.44 seconds
+            )  # tiempo: 28.44 segundos
 
 # 2). Unir los registros de vuelos y clima utilizando el destino del vuelo (DestAirportID).
 system.time(destData_mrs <- rxMerge(inData1 = originData_mrs, inData2 = weather_mrs, outFile = outFileDest,
@@ -154,7 +154,7 @@ system.time(destData_mrs <- rxMerge(inData1 = originData_mrs, inData2 = weather_
                                     duplicateVarExt = c("Origin", "Destination"),
                                     overwrite=TRUE
                                     )
-            )  # tiempo: 36.25 seconds
+            )  # tiempo: 36.25 segundos
 
 # Normalizar algunas características numéricas y convertir algunas características para ser categóricas.
 system.time(finalData_mrs <- rxDataStep(inData = destData_mrs, outFile = outFileFinal,
@@ -179,7 +179,7 @@ system.time(finalData_mrs <- rxDataStep(inData = destData_mrs, outFile = outFile
                                                           ),
                                         overwrite=TRUE
                                         )
-            )  # tiempo: 10.39 seconds
+            )  # tiempo: 10.39 segundos
 ```
 
 ```
@@ -197,7 +197,7 @@ xform_r <- function(df) {
   # Regresar el DataFrame.
   return(df)
 }
-system.time(flight_r <- xform_r(flight_r))  # tiempo: 0.03 seconds
+system.time(flight_r <- xform_r(flight_r))  # tiempo: 0.03 segundos
 
 # Renombrar algunas columnas de los datos del tiempo para prepararlo para el cruce de información.
 xform2_r <- function(df) {
@@ -211,7 +211,7 @@ xform2_r <- function(df) {
   # Regresar el DataFrame.
   return(df)
 }
-system.time(weather_r <- xform2_r(weather_r))  # tiempo: <0.01 seconds
+system.time(weather_r <- xform2_r(weather_r))  # tiempo: <0.01 segundos
 
 # Concatenar los registros de vuelos y el clima.
 1). Unir los registros de vuelos y clima utilizando el origen del vuelo (OriginAirportID).
@@ -226,7 +226,7 @@ mergeFunc <- function(df1, df2) {
   # Regresar el DataFrame.
   return(dfOut)
 }
-system.time(originData_r <- mergeFunc(flight_r, weather_r)) # tiempo: 43.92 seconds
+system.time(originData_r <- mergeFunc(flight_r, weather_r)) # tiempo: 43.92 segundos
 
 # 2). Unir los registros de vuelos y clima utilizando el destino del vuelo (DestAirportID).
 mergeFunc2 <- function(df1, df2) {
@@ -241,7 +241,7 @@ mergeFunc2 <- function(df1, df2) {
   # Regresar el DataFrame.
   return(dfOut)
 }
-system.time(destData_r <- mergeFunc2(originData_r, weather_r)) # tiempo: 37.53 seconds
+system.time(destData_r <- mergeFunc2(originData_r, weather_r)) # tiempo: 37.53 segundos
 
 # Normalizar algunas características numéricas y convertir algunas características para ser categóricas.
 scaleVar <- c('Visibility.Origin', 'DryBulbCelsius.Origin', 'DewPointCelsius.Origin',
@@ -262,7 +262,7 @@ xform3_r <- function(df) {
   # Regresar el DataFrame.
   return(df)
 }
-system.time(finalData_r <- xform3_r(destData_r))  # tiempo: 39.98 seconds
+system.time(finalData_r <- xform3_r(destData_r))  # tiempo: 39.98 segundos
 ```
 
 
@@ -285,14 +285,14 @@ system.time(rxExec(rxSplit, inData = finalData_mrs,
                    rngSeed=17,
                    consoleOutput=TRUE
                    )
-            )  # tiempo: 9.19 seconds
+            )  # tiempo: 9.19 segundos
 ```
 
 ```
 ### R Open Source:
 # División aleatoria del 80% de los datos para entrenar el modelo y el 20%  restante para probarlo.
 set.seed(17)
-system.time(sub <- sample(nrow(finalData_r), floor(nrow(finalData_r) * 0.8)))  # tiempo: 0.04 seconds
+system.time(sub <- sample(nrow(finalData_r), floor(nrow(finalData_r) * 0.8)))  # tiempo: 0.04 segundos
 ```
 
 
@@ -305,13 +305,13 @@ Construcción de un modelo de regresión logística | 5.50 | 229.32
 ```
 ### Microsoft R Sserver:
 # Construcción de un modelo de regresión logística.
-system.time(logitModel_mrs <- rxLogit(form, data = 'finalData.splitVar.Train.xdf'))  # tiempo: 5.50 seconds
+system.time(logitModel_mrs <- rxLogit(form, data = 'finalData.splitVar.Train.xdf'))  # tiempo: 5.50 segundos
 ```
 
 ```
 ### R Open Source:
 # Construcción de un modelo de regresión logística.
-system.time(logitModel_r <- glm(form, data = train, family = "binomial"))  # tiempo: 229.32 seconds
+system.time(logitModel_r <- glm(form, data = train, family = "binomial"))  # tiempo: 229.32 segundos
 ```
 
 
@@ -326,13 +326,13 @@ Predecir la probabilidad en los datos de prueba | 0.56 | 1.72
 # Predecir la probabilidad en los datos de prueba.
 system.time(predictLogit_mrs <- rxPredict(logitModel_mrs, data = 'finalData.splitVar.Test.logit.xdf',
                                           type = 'response', overwrite = TRUE)
-            ) # tiempo: 0.56 seconds
+            ) # tiempo: 0.56 segundos
 ```
 
 ```
 ### R Open Source:
 # Predecir la probabilidad en los datos de prueba.
-system.time(predictLogit_r <- predict(logitModel_r, newdata = test, type = 'response'))  # tiempo: 1.72 seconds
+system.time(predictLogit_r <- predict(logitModel_r, newdata = test, type = 'response'))  # tiempo: 1.72 segundos
 ```
 
 
@@ -346,7 +346,7 @@ Podar un árbol de decisión para devolver el árbol más pequeño | 0.03 | 4.25
 ```
 ### Microsoft R Server:
 # Construcción de un modelo de árbol de decisión.
-system.time(dTree1_mrs <- rxDTree(form, data = 'finalData.splitVar.Train.xdf'))  # tiempo: 151.69 seconds
+system.time(dTree1_mrs <- rxDTree(form, data = 'finalData.splitVar.Train.xdf'))  # tiempo: 151.69 segundos
 
 # Podar un árbol de decisión para devolver el árbol más pequeño.
 system.time(dTree2_mrs <- prune.rxDTree(dTree1_mrs, cp = treeCp_mrs))  # tiempo: 0.03 segundos
@@ -441,10 +441,3 @@ Dado que las precisiones del modelo son las mismas tanto en Microsoft R Server c
 <!-- Links -->
 [Flight Delay Prediction with Microsoft R Server]: https://github.com/mezmicrosoft/Microsoft_R_Server/tree/master/Flight_Delay_Prediction
 [Microsoft Data Science Virtual Machine]: https://azure.microsoft.com/en-us/marketplace/partners/microsoft-ads/standard-data-science-vm/
-
-
-<!-- Images -->
-[total]:https://raw.githubusercontent.com/mezmicrosoft/Microsoft_R_Server/master/MRS%20and%20R%20Comparison/total.png
-[total_breakdown]:https://raw.githubusercontent.com/mezmicrosoft/Microsoft_R_Server/master/MRS%20and%20R%20Comparison/total_breakdown.png
-[step]:https://raw.githubusercontent.com/mezmicrosoft/Microsoft_R_Server/master/MRS%20and%20R%20Comparison/step.png
-
