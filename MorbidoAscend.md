@@ -41,23 +41,37 @@ Mórbido's content revolves around horror, sci-fi and fantasy and generates info
 >One of the challenges encountered while developing the app, was related to video and audio streaming. Mórbido uses Smooth Streaming protocol to deliver content. The Xamarin native player is not compatible with it.
 >The video streaming was overcome by playing video through Rox Xamarin Video. This component allows the app to progressively play video from Azure Media Services. Also, this player has play and pause controls. 
 >To use this component, we need to install it from NuGet using the following command.
->*INSERTAR IMAGEN 1
+
+![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/1-NuGetRox.png)
+
 >Implement the player into the project is really simple. Once we get the video URL from the backend web service, we just have to create a view to build the player. Then we just assign the URL by binding.
->*INSERTAR IMAGEN 2
+
+![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/2-BindVideoURL.png)
+
 >To play audio, we had to implement XamarinMediaManager component. In order to be able to play a podcast within the app, first we need to get the podcast URL. 
->*INSERTAR IMAGEN 3
+
+![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/3-PodcastURL.png)
+
 >Once we get the URL, we need to add a specific format for Android (m3u8 format).
->*INSERTAR IMAGEN 4
+
+![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/4-StreamingFormat.png)
+
 >In this way, the player now can play the podcast. 
 >The next step is to implement the device native player, and assign the audio file it will play.
->*INSERTAR IMAGEN 5
+
+![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/5-ImplementAudioPlayer.png)
+
 >It is important to mention that all of the timing and playback indicators of the file being played must be carried manually in the ViewModel podcast.
 ## Code Snippets ##
 >Morbido app connects to the backend through HTTP requests. In order to make it secure, Morbido implemented OAuth to be able to get the required info in JSON format, so then it could be deserialized and pass it to the app in a clear way.
 >In the next code snippet, it is shown how this backend call is made. The user token is sent within the service call, and in this way, be sure it is a secure request.
->* inserter imagen 0
+
+![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/0-OAuth.png)
+
 ## Architecture Diagram ##
->*Insertar diagrama
+
+![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/Architecture diagram.jpg)
+
 ## References ##
 * [Xamarin Media Manager](https://github.com/martijn00/XamarinMediaManager)
 * [Rox Xamarin Video](https://www.nuget.org/packages/Rox.Xamarin.Video/)
