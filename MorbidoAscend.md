@@ -76,5 +76,13 @@ Mórbido's content revolves around horror, sci-fi and fantasy and generates info
 * [Xamarin Media Manager](https://github.com/martijn00/XamarinMediaManager)
 * [Rox Xamarin Video](https://www.nuget.org/packages/Rox.Xamarin.Video/)
 
-# Conclusion #
+## General Lessons ##
+* It was really difficult to find information regarding to streaming integration with Xamarin. We expect this documentation can help other developers to solve this quickly.
+* Downloading NuGet packages sometimes crashed the application, but it seems to be more stable now.
 
+## Opportunities Going forward ##
+>This applicattion will be launched in the second week of March for Android, and it is now in scope to launch the applicattion for iOS in a few months later.
+>Also, another opportunity is realated to store metrics from users. In a future stage of the application, they are planning to collect metrics from the users on the app, so they can know how many time they spend on each section, the most visited section, etc., and capitalize this infomration.
+
+## Conclusion ##
+> The impact of this app is related to Mórbido fans, and Mórbido itself. Mórbido will start collecting information of their fans into a database, so they can know how many people they are reaching, the different countries they are from, and start offering more content. The fans will be impacted because they can watch Mórbido movies without a TV channel subscription, listen to the podcast and news related to the horror and sci-fi movies.
