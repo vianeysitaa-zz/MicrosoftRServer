@@ -5,7 +5,7 @@
 
 # Solution Overview #
 
->Morbido will offer podcast, streaming videos, news and different content for all of Morbido fans through a Xamarin App that will be available for Android users.
+>Mórbido will offer podcast, streaming videos, news and different content for all of Mórbido fans through a Xamarin App that will be available for Android users.
 
 ## Key Technologies Used ##
 *	Xamarin Froms
@@ -24,7 +24,7 @@
 >Mórbido is a multiplatform content generator. Started as a film festival but now their services extended to a website, TV network, a film distributor, a radio show, social media pages and a printed magazine.
 Mórbido's content revolves around horror, sci-fi and fantasy and generates information on a daily basis, on all its platforms for over 5 million people from all over Latam.
 
->Morbido URL: [Mórbido Web Page](http://www.morbidofest.com) 
+>Mórbido URL: [Mórbido Web Page](http://www.morbidofest.com) 
 
 ## Problem statement ##
 >“The constant and dynamic transformation of the entertainment industry, coupled with the insatiable interest of our fans to consume all kinds of content at all times, everywhere and in all possible devices and being our project a multiplatform generator of content and events throughout Latin America, led us to the conclusion that a mobile app was the only real option we had to concentrate everything, then we started  developing an application that had the capacity and strength to satisfy our current needs and allow us to continue growing.” (Pablo Guisa Koestinger, Mórbido CEO).
@@ -41,6 +41,10 @@ Mórbido's content revolves around horror, sci-fi and fantasy and generates info
 >One of the challenges encountered while developing the app, was related to video and audio streaming. Mórbido uses Smooth Streaming protocol to deliver content. The Xamarin native player is not compatible with it.
 >The video streaming was overcome by playing video through Rox Xamarin Video. This component allows the app to progressively play video from Azure Media Services. Also, this player has play and pause controls. 
 >To use this component, we need to install it from NuGet using the following command.
+
+```shell
+Install -Package Rox.Xamarin.Video
+```
 
 ![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/1-NuGetRox.png)
 
@@ -63,7 +67,7 @@ Mórbido's content revolves around horror, sci-fi and fantasy and generates info
 
 >It is important to mention that all of the timing and playback indicators of the file being played must be carried manually in the ViewModel podcast.
 ## Code Snippets ##
->Morbido app connects to the backend through HTTP requests. In order to make it secure, Morbido implemented OAuth to be able to get the required info in JSON format, so then it could be deserialized and pass it to the app in a clear way.
+>Mórbido app connects to the backend through HTTP requests. In order to make it secure, Mórbido implemented OAuth to be able to get the required info in JSON format, so then it could be deserialized and pass it to the app in a clear way.
 >In the next code snippet, it is shown how this backend call is made. The user token is sent within the service call, and in this way, be sure it is a secure request.
 
 ![alt tag](http://aminespinoza.com/ascend/MorbidoAscend/0-OAuth.png)
