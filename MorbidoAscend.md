@@ -90,7 +90,7 @@ await implementation.AudioPlayer.Play(file);
 >In the next code snippet, it is shown how this backend call is made. The user token is sent within the service call, and in this way, be sure it is a secure request.
 
 ```csharp
-public async Task<IEnumerable<HomeDashboard>> GetAllHomeDashboardsAsync (CancellationTokenSource cancelToken, string token="")
+public async Task<IEnumerable<HomeDashboard> GetAllHomeDashboardsAsync (CancellationTokenSource cancelToken, string token="")
 {
     using (var client = new HttpClient())
     {
