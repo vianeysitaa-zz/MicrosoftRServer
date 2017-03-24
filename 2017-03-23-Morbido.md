@@ -1,5 +1,3 @@
-@@ -1,130 +0,0 @@
-
 | layout |  title  | author | author-link |  date  |  categories  |  excerpt  |  language  |  verticals  |
 |--------|:-------:|:------:|:-----------:|:------:|:-------------:|:--------:|:----------:|:-----------:|
 | post | Mórbido Xamarin App | Vianey Juárez Araujo | [@Vianeysitaa](https://twitter.com/VIANEYsitaa) | 2017-02-03 | Mobile Application Development with Xamarin | blue | Microsoft and Mórbido are working together to provide to their fans a new channel for horror an sci-fi movies through a Xamarin app that offers video streaming, podcast, news, and more. | English | Media and Entertainment |
